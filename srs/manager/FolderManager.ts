@@ -20,8 +20,8 @@ export class FolderManager implements IFolderManager{
     }
     async removeTmpFolders() {
         try {
-            fs.rm(path.join(__dirname, this.tmpFileSortName),{recursive : true}, e => console.log(e), );
-            fs.rm(path.join(__dirname, this.tmpFileMergedName), {recursive : true}, e => console.log(e));
+            fs.rm(this.tmpFileSortName,{recursive : true}, e => console.log(e), );
+            fs.rm(this.tmpFileMergedName, {recursive : true}, e => console.log(e));
         } catch (e) {
             console.log(e)
         }

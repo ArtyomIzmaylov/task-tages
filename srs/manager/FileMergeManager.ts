@@ -1,10 +1,8 @@
 import * as fs from "fs";
-import * as stream from "stream";
 import * as crypto from "crypto";
 import * as path from "path";
-import * as readline from "readline";
-
-
+import {pipeline} from "stream/promises";
+import {createInterface} from 'readline';
 export interface IFileMergeManager {
     mergeAllFiles(fileNames : string[], outputFileName : string) : Promise<void>
 }
@@ -39,11 +37,11 @@ export class FileMergeManager implements IFileMergeManager{
 
     private async mergeTwoFiles(file1 : string, file2 : string, outputFileName : string) {
         const file = fs.createWriteStream(outputFileName);
-        const reader1 = readline.createInterface({ input: fs.createReadStream(file1), crlfDelay: Infinity })[Symbol.asyncIterator]();
-        const reader2 = readline.createInterface({ input: fs.createReadStream(file2), crlfDelay: Infinity })[Symbol.asyncIterator]();
+        const reader1 = createInterface({ input: fs.createReadStream(file1), crlfDelay: Infinity })[Symbol.asyncIterator]();
+        const reader2 = createInterface({ input: fs.createReadStream(file2), crlfDelay: Infinity })[Symbol.asyncIterator]();
 
         const strings = await Promise.all([reader1.next(), reader2.next()]);
-        return stream.promises.pipeline(
+        return pipeline(
             async function* () {
                 while (strings.length > 0) {
                     const [minString, minStringIndex] = strings.reduce((prev, cur, idx) => {
