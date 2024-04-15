@@ -1,4 +1,4 @@
 /node_modules
 .idea
-/srs/input.txt
-/srs/output.txt
+/src/input.txt
+/src/output.txt
