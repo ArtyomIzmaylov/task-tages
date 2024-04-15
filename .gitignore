@@ -1,0 +1,15 @@
+node_modules
+src/tmp
+src/test1.txt
+src/test2.txt
+src/srs/input.txt
+package-lock.json
+src/output.txt
+src/srs/input.txt
+output.txt
+src/srs/input.txt
+new
+/src/bigInput.txt
+/src/test.js
+/src/tmp_merged
+/src/srs
