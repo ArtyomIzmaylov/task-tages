@@ -11,7 +11,7 @@ import {FileMergeManager} from "./manager/FileMergeManager";
 
 (() => {
     const folderManager = new FolderManager(
-        path.join(__dirname, 'tmp_sort'), path.join(__dirname, 'tmp_merged'))
+        path.join(__dirname, '..', 'tmp_sort'), path.join(__dirname, '..', 'tmp_merged'))
     folderManager.createTmpFolders()
         .then(() => new FileHandler(
             new FileSorterWriter(
